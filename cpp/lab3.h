@@ -28,6 +28,7 @@ void show_mm_type(FILE* fp);
 class mtxBLU{
   public:
     mtxBLU(const char* const s, int _p);
+    mtxBLU(const char* const s);           //right hand side only
     ~mtxBLU(){if(arr!=NULL) delete[] arr; }
   public:
     double *arr;

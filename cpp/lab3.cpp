@@ -57,6 +57,22 @@ void show_mm_type(FILE* fp){//for debug
   if( mm_is_hermitian(matcode) ) printf("is hermitian\n");
 }
 
+mtxBLU::mtxBLU(const char* const s): arr(NULL){
+  FILE *fp;
+  if( (fp=fopen(s, "r"))==NULL  ||
+      !check_type_BLU(fp, m, n) ||
+      n!=1                      ||
+      !getmem() ){
+    cerr<<"cann't read mtx: "<<s<<endl; 
+    exit(1); 
+  }
+
+  for(int i=0; i<m*1; i++){
+    fscanf(fp, "%lf\n", arr+i);
+  }
+  fclose(fp);     
+}
+
 
 
 mtxBLU::mtxBLU(const char* const s, int _p):p(_p), arr(NULL){
